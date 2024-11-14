@@ -6,12 +6,24 @@ As 5G networks evolve, detecting Distributed Denial of Service (DDoS) attacks re
 ![plot](https://github.com/sotirischatzimiltis/DDoS_5G_network_KPM/blob/main/Figrures/arch_working_final_letter.png)
 
 ### Dataset
-The dataset can be downloaded from here: [NCSRD-DS-5GDDoS](https://zenodo.org/records/13900057)
+The raw dataset can be downloaded from here: [NCSRD-DS-5GDDoS](https://zenodo.org/records/13900057)
+
+### Overview of DDoS attack types, occurrence times, and participating devices
+
+| #  | Attack Type       | Date       | Time              | Devices (IP)                                     |
+|----|--------------------|------------|-------------------|--------------------------------------------------|
+| 1  | SYN Flood         | 18.08.2024 | 07:00 - 08:00    | 10.20.10.2<br>10.20.10.4                         |
+| 2  | ICMP Flood        | 19.08.2024 | 07:00 - 09:41    | 10.20.10.2<br>10.20.10.4                         |
+| 3  | UDP Fragmentation | 19.08.2024 | 17:00 - 18:00    | 10.20.10.2<br>10.20.10.4                         |
+| 4  | DNS Flood         | 21.08.2024 | 12:00 - 13:00    | 10.20.10.2<br>10.20.10.4                         |
+| 5  | GTP-U Flood       | 21.08.2024 | 17:00 - 18:00    | 10.20.10.2<br>10.20.10.4<br>10.20.10.6<br>10.20.10.8<br>10.20.10.10 |
+
 
 ### Data Pre-processing
-1. UE feature selection [script](https://github.com/sotirischatzimiltis/DDoS_5G_network_KPM/blob/main/Scripts/ue_data_feature_selection.ipynb)
-2. Cell feature selection [script](https://github.com/sotirischatzimiltis/DDoS_5G_network_KPM/blob/main/Scripts/cell_level_feature_selection.ipynb)
-3. Merge UE and Cell data [script](https://github.com/sotirischatzimiltis/DDoS_5G_network_KPM/blob/main/Scripts/merge_dataset.ipynb)
+The following scripts can be followed serially in order to replicate the final datasets used for the experiments. Otherwise, the final datasets are located in the dedicated [folder](https://github.com/sotirischatzimiltis/ML_framework_DDoS_5G/tree/main/Datasets).
+1. This [script](https://github.com/sotirischatzimiltis/ML_framework_DDoS_5G/blob/main/Scripts/UE_Initial_Feature_Drop_01.ipynb) performs an initial UE feature reduction, removing primarily identification features or session features that do not directly quantify performance. 
+2. This [script](https://github.com/sotirischatzimiltis/ML_framework_DDoS_5G/blob/main/Scripts/Per_UE_Dataset_Creation_02.ipynb) is responsible for creating a new folder containing a CSV file per UE in the dataset. This script also fills the NaN values. 
+3. This [script]() creates two folders containing the finalized UE datasets. One folder contains the regular record values and the other one the rate of change between two records. Also this script identifies the periods where an UE reconnects to the core after inactivity and labels the records as normal or malicious (and a more specific type for multiclass classification) since only some UEs contribute to each attack. 
    
 ### ML training
 1. GridSearch for traditional ml models [script](https://github.com/sotirischatzimiltis/DDoS_5G_network_KPM/blob/main/Scripts/gridsearch_cv.ipynb)
