@@ -6,7 +6,7 @@ As 5G networks evolve, detecting Distributed Denial of Service (DDoS) attacks re
 ![plot](https://github.com/sotirischatzimiltis/DDoS_5G_network_KPM/blob/main/Figrures/arch_working_final_letter.png)
 
 ### Dataset
-The dataset can be downloaded from here: [NCSRD-DS-5GDDoS](https://zenodo.org/records/10671494)
+The dataset can be downloaded from here: [NCSRD-DS-5GDDoS](https://zenodo.org/records/13900057)
 
 ### Data Pre-processing
 1. UE feature selection [script](https://github.com/sotirischatzimiltis/DDoS_5G_network_KPM/blob/main/Scripts/ue_data_feature_selection.ipynb)
